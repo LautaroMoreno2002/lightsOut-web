@@ -1,12 +1,56 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, inject, OnInit, Output } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-config-form',
   standalone: true,
-  imports: [],
+  imports: [ReactiveFormsModule],
   templateUrl: './config-form.component.html',
-  styleUrl: './config-form.component.css'
+  styleUrl: './config-form.component.css',
 })
-export class ConfigFormComponent {
+export class ConfigFormComponent implements OnInit {
+  formConfig: FormGroup;
+  userName: string;
+  type: number;
+  level: number;
+  @Output() nameConfig: EventEmitter<string>;
+  @Output() levelConfig: EventEmitter<number>;
+  @Output() typeConfig: EventEmitter<number>;
+  private formBuilder: FormBuilder = inject(FormBuilder);
 
+  constructor() {
+    this.userName = 'Pepito';
+    this.level = 1;
+    this.type = 1;
+    this.nameConfig = new EventEmitter<string>();
+    this.levelConfig = new EventEmitter<number>();
+    this.typeConfig = new EventEmitter<number>();
+    this.formConfig = this.formBuilder.group({
+      userName: ['', Validators.required],
+      level: [, Validators.required],
+      type: [, Validators.required],
+    });
+  }
+
+  ngOnInit(): void {
+    this.formConfig.get('userName')
+    ?.valueChanges.subscribe(
+      (data) => (this.userName = data)
+    );
+    this.formConfig.get('level')
+      ?.valueChanges.subscribe(
+        (data) => (this.level = data)
+      );
+    this.formConfig.get('type')
+    ?.valueChanges.subscribe(
+      (data) => (this.type = data)
+    );
+  }
+
+  startGame(): void {
+    this.nameConfig.emit(this.userName);
+    this.levelConfig.emit(this.level);
+    this.typeConfig.emit(this.type);
+  }
+  
 }

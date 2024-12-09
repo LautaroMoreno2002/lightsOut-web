@@ -6,8 +6,8 @@
   max-width: max-content;
   background-color: #000;
   display: grid;
-  grid-template-columns: repeat(3, minmax(100px, 150px));
-  grid-template-rows: repeat(3, minmax(100px, 150px));
+  grid-template-columns: repeat(var(--lenght), minmax(100px, 150px));
+  grid-template-rows: repeat(var(--lenght), minmax(100px, 150px));
   gap: 10px;
   border-radius: 15px;
 }

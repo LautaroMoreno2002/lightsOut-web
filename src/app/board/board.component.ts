@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Celda } from './celda';
 
 @Component({
@@ -8,26 +8,20 @@ import { Celda } from './celda';
   templateUrl: './board.component.html',
   styleUrl: './board.component.css',
 })
-export class BoardComponent {
+export class BoardComponent implements OnInit {
   @Input() boardLength: number = 3;
-  @Input() mod?: number;
-  @Input() userName: string = 'Pepito';
-  @Output() finish = new EventEmitter<boolean>();
+  @Input() type = 2;
   board: Celda[][] = [];
-  
-  score: number = 0;
 
   ngOnInit(): void {
     this.startBoard();
     this.startLights();
   }
-
   startBoard(): void {
     for (let row = 0; row < this.boardLength; row++) {
       this.board[row] = [];
     }
   }
-
   startLights(): void {
     for (let row = 0; row < this.boardLength; row++) {
       for (let col = 0; col < this.boardLength; col++) {
@@ -36,65 +30,52 @@ export class BoardComponent {
       }
     }
   }
-
   pushLight(_row: number, _col: number): void {
-    if (this.playState() === true) {
-      this.finish.emit(true);
-    } else {
-      this.board[_row][_col].offState();
-      this.score++;
-      if (this.mod == 1) {
-        this.columnsLightOnM1(_row, _col);
-        this.rowsLightOnM1(_row, _col);
-      } else {
-        this.columnsLightOnM2(_row, _col);
-        this.rowsLightOnM2(_row, _col);
-      }
-      if (this.playState() === true) {
-        this.finish.emit(true);
-      }
+    this.board[_row][_col].offState();
+    if (this.type == 1) {
+      this.rowsLightOnC(_row, _col);
+      this.columnsLightOnC(_row, _col);
+    } 
+    else if (this.type == 2) {
+      this.rowsLightOnV(_row, _col);
+      this.columnsLightOnV(_row, _col);
+    }
+  }
+  rowsLightOnC(_row: number, _col: number): void {
+    let rowBefore = _row-1, rowAfter = _row+1;
+    if (_row > 0 && _row < this.boardLength-1) {
+      this.board[rowBefore][_col].offState();
+      this.board[rowAfter][_col].offState();
+    } else if (_row == 0) {
+      this.board[rowAfter][_col].offState();
+    } else if (_row == this.boardLength-1) {
+      this.board[rowBefore][_col].offState();
     }
   }
 
-  playState() {
-    let state = false;
+  columnsLightOnC(_row: number, _col: number): void {
+    let colBefore = _col-1, colAfter = _col+1;
+    if (_col > 0 && _col < this.boardLength - 1) {
+      this.board[_row][colBefore].offState();
+      this.board[_row][colAfter].offState();
+    } else if (_col == 0) {
+      this.board[_row][colAfter].offState();
+    } else if (_col == this.boardLength - 1) {
+      this.board[_row][colBefore].offState();
+    }
+  }
+
+  rowsLightOnV(_row: number, _col: number): void {
     for (let row = 0; row < this.boardLength; row++) {
-      for (let col = 0; col < this.boardLength; col++) {
-        state = state || this.board[row][col].getState();
-      }
-    }
-    return state === false; // Si es true, hay una celda encendida
-  }
-
-  rowsLightOnM1(_row: number, _col: number): void {
-    let rowAnt = _row - 1,
-      rowPost = _row + 1;
-    if (_row === 0) this.board[rowPost][_col].offState();
-    else if (_row === this.boardLength - 1) this.board[rowAnt][_col].offState();
-    else {
-      this.board[rowAnt][_col].offState();
-      this.board[rowPost][_col].offState();
+      if (row != _row)
+        this.board[row][_col].offState();
     }
   }
 
-  columnsLightOnM1(_row: number, _col: number): void {
-    let colAnt = _col - 1,
-      colPost = _col + 1;
-    if (_col === 0) this.board[_row][colPost].offState();
-    else if (_col === this.boardLength - 1) this.board[_row][colAnt].offState();
-    else {
-      this.board[_row][colAnt].offState();
-      this.board[_row][colPost].offState();
+  columnsLightOnV(_row: number, _col: number): void {
+    for (let col = 0; col < this.boardLength; col++) {
+      if (col != _col)
+        this.board[_row][col].offState();
     }
-  }
-
-  rowsLightOnM2(_row: number, _col: number): void {
-    for (let row = 0; row < this.boardLength; row++)
-      if (row != _row) this.board[row][_col].offState();
-  }
-
-  columnsLightOnM2(_row: number, _col: number): void {
-    for (let col = 0; col < this.boardLength; col++)
-      if (col != _col) this.board[_row][col].offState();
   }
 }
