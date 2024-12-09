@@ -3,14 +3,14 @@
     @for (row of board; track row; let row2 = $index) {
       @for (celda of row; track $index; let col2 = $index) {
         @if (celda.getState()) {
-          <div class="cell on" (click)="pushLight(row2, col2)">{{ row2 }} , {{ col2 }}</div>
+          <div class="cell on" (click)="pushLight(row2, col2)"></div>
         } @else {
-          <div class="cell off" (click)="pushLight(row2, col2)">{{ row2 }} , {{ col2 }}</div>
+          <div class="cell off" (click)="pushLight(row2, col2)"></div>
         }
       }
     }
   </div>
   <div class="score">
-    <p>Score of Pepito: <span>{{ this.score }}</span></p>
+    <p>Score of {{ this.userName }}: <span>{{ this.score }}</span></p>
   </div>
 </div>

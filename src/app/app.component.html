@@ -1,2 +1,27 @@
-<!-- <app-config-form /> -->
- <app-board />
+<div class="cont-game">
+  <app-config-form (nameConfig)="catchName($event)" (levelConfig)="catchLevel($event)" (typeConfig)="catchType($event)" />
+  @if (level == 3 && mod == 'C') {
+    <app-board [boardLength]="level" [type]="mod" [userName]="userName" />
+  }
+  @if (level == 3 && mod == 'V') {
+    <app-board [boardLength]="level" [type]="mod" [userName]="userName" />
+  }
+  @if (level == 4 && mod == 'C') {
+    <app-board [boardLength]="level" [type]="mod" [userName]="userName" />
+  }
+  @if (level == 4 && mod == 'V') {
+    <app-board [boardLength]="level" [type]="mod" [userName]="userName" />
+  }
+  @if (level == 5 && mod == 'C') {
+    <app-board [boardLength]="level" [type]="mod" [userName]="userName" />
+  }
+  @if (level == 5 && mod == 'V') {
+    <app-board [boardLength]="level" [type]="mod" [userName]="userName" />
+  }
+  @if (level == 6 && mod == 'C') {
+    <app-board [boardLength]="level" [type]="mod" [userName]="userName" />
+  }
+  @if (level == 6 && mod == 'V') {
+    <app-board [boardLength]="level" [type]="mod" [userName]="userName" />
+  }
+</div>

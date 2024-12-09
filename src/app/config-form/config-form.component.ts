@@ -11,20 +11,20 @@ import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } 
 export class ConfigFormComponent implements OnInit {
   formConfig: FormGroup;
   userName: string;
-  type: number;
   level: number;
+  type: string;
   @Output() nameConfig: EventEmitter<string>;
   @Output() levelConfig: EventEmitter<number>;
-  @Output() typeConfig: EventEmitter<number>;
+  @Output() typeConfig: EventEmitter<string>;
   private formBuilder: FormBuilder = inject(FormBuilder);
 
   constructor() {
     this.userName = 'Pepito';
-    this.level = 1;
-    this.type = 1;
+    this.level = 3;
+    this.type = 'C';
     this.nameConfig = new EventEmitter<string>();
     this.levelConfig = new EventEmitter<number>();
-    this.typeConfig = new EventEmitter<number>();
+    this.typeConfig = new EventEmitter<string>();
     this.formConfig = this.formBuilder.group({
       userName: ['', Validators.required],
       level: [, Validators.required],

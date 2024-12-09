@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import { Celda } from './celda';
 
 @Component({
@@ -8,9 +8,10 @@ import { Celda } from './celda';
   templateUrl: './board.component.html',
   styleUrl: './board.component.css',
 })
-export class BoardComponent implements OnInit {
-  @Input() boardLength: number = 2;
-  @Input() type = 1;
+export class BoardComponent implements OnInit, OnChanges {
+  @Input() userName: string = 'Pepito123';
+  @Input() boardLength: number = 3;
+  @Input() type: string = 'C';
   @Output() finish = new EventEmitter<boolean>();
   board: Celda[][] = [];
   score: number = 0;
@@ -18,6 +19,14 @@ export class BoardComponent implements OnInit {
   ngOnInit(): void {
     this.startBoard();
     this.startLights();
+  }
+  ngOnChanges(changes: SimpleChanges): void {
+    if (
+      changes?.['boardLength'].currentValue !=
+      changes?.['boardLength'].previousValue
+    ) {
+      this.boardLength = changes?.['boardLength'].currentValue;
+    }
   }
   startBoard(): void {
     for (let row = 0; row < this.boardLength; row++) {
@@ -47,11 +56,11 @@ export class BoardComponent implements OnInit {
     else {
       this.board[_row][_col].offState();
       this.score++;
-      if (this.type == 1) {
+      if (this.type == 'C') {
         this.rowsLightOnC(_row, _col);
         this.columnsLightOnC(_row, _col);
       } 
-      else if (this.type == 2) {
+      else if (this.type == 'V') {
         this.rowsLightOnV(_row, _col);
         this.columnsLightOnV(_row, _col);
       }
