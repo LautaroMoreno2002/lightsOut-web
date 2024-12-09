@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Celda } from './celda';
 
 @Component({
@@ -9,8 +9,9 @@ import { Celda } from './celda';
   styleUrl: './board.component.css',
 })
 export class BoardComponent implements OnInit {
-  @Input() boardLength: number = 3;
+  @Input() boardLength: number = 2;
   @Input() type = 2;
+  @Output() finish = new EventEmitter<boolean>();
   board: Celda[][] = [];
 
   ngOnInit(): void {
@@ -30,15 +31,30 @@ export class BoardComponent implements OnInit {
       }
     }
   }
+  lightsOut(): boolean {
+    let lightsOut = false;
+    for (let row = 0; row < this.boardLength; row++) {
+      for (let col = 0; col < this.boardLength; col++) {
+        lightsOut = lightsOut || this.board[row][col].getState();
+      }
+    }
+    return !lightsOut;
+  }
   pushLight(_row: number, _col: number): void {
-    this.board[_row][_col].offState();
-    if (this.type == 1) {
-      this.rowsLightOnC(_row, _col);
-      this.columnsLightOnC(_row, _col);
-    } 
-    else if (this.type == 2) {
-      this.rowsLightOnV(_row, _col);
-      this.columnsLightOnV(_row, _col);
+    if (this.lightsOut() == true) 
+      this.finish.emit(true); 
+    else {
+      this.board[_row][_col].offState();
+      if (this.type == 1) {
+        this.rowsLightOnC(_row, _col);
+        this.columnsLightOnC(_row, _col);
+      } 
+      else if (this.type == 2) {
+        this.rowsLightOnV(_row, _col);
+        this.columnsLightOnV(_row, _col);
+      }
+       if (this.lightsOut() == true) 
+        this.finish.emit(true);
     }
   }
   rowsLightOnC(_row: number, _col: number): void {
