@@ -4,6 +4,7 @@
   --light-semi-active: #358003;
   --light-out: #215002;
   --light-semi-out: #49aa08;
+  --font: sans-serif;
 }
 * {
   padding: 0;

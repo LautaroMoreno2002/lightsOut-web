@@ -1,0 +1,39 @@
+.form {
+  font-family: var(--font);
+  background-color: #ccc;
+  max-width: 450px;
+  height: 300px;
+  padding: 2em;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+.form__cont-input {
+  line-height: 1.5;
+  margin: 10px;
+  display: flex;
+  justify-content: space-between;
+}
+.form__cont-input > label {
+  margin-right: 10px;
+}
+.form__cont-input > :is(input, select) {
+  width: 55%;
+  text-align: center;
+}
+input[type="radio"] {
+  margin-right: 5px;
+}
+input[type="submit"] {
+  padding: 10px 0;
+}
+.options {
+  width: 50%;
+}
+.option {
+  display: inline-block;
+  margin-right: 10%;
+}
+.form__cont-input:has(input[type="submit"]) {
+  justify-content: center;
+}

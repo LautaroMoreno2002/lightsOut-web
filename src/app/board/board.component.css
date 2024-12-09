@@ -1,5 +1,5 @@
 .cont-board {
-  
+  font-family: var(--font);
 }
 .board {
   padding: 10px;
