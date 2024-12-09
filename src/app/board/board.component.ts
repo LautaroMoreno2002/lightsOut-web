@@ -10,9 +10,10 @@ import { Celda } from './celda';
 })
 export class BoardComponent implements OnInit {
   @Input() boardLength: number = 2;
-  @Input() type = 2;
+  @Input() type = 1;
   @Output() finish = new EventEmitter<boolean>();
   board: Celda[][] = [];
+  score: number = 0;
 
   ngOnInit(): void {
     this.startBoard();
@@ -45,6 +46,7 @@ export class BoardComponent implements OnInit {
       this.finish.emit(true); 
     else {
       this.board[_row][_col].offState();
+      this.score++;
       if (this.type == 1) {
         this.rowsLightOnC(_row, _col);
         this.columnsLightOnC(_row, _col);
