@@ -1,0 +1,33 @@
+.cont-board {
+  
+}
+.board {
+  padding: 10px;
+  max-width: max-content;
+  background-color: #000;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(100px, 150px));
+  grid-template-rows: repeat(3, minmax(100px, 150px));
+  gap: 10px;
+  border-radius: 15px;
+}
+.cell {
+  border-radius: 15px;
+  
+  &.on {
+    background-color: var(--light-active);
+  }
+  &.on:hover {
+    background-color: var(--light-semi-active);
+  }
+  &.off {
+    background-color: var(--light-out);
+  }
+  &.off:hover {
+    background-color: var(--light-semi-out);
+  }
+}
+.score p span {
+  font-weight: 900;
+  color: #f00;
+}

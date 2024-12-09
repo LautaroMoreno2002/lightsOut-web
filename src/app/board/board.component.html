@@ -1,13 +1,16 @@
-<div class="cont-tablero">
-  <div class="tablero" style="--largo: {{ boardLength }}">
+<div class="cont-board">
+  <div class="board" style="--lenght: {{ boardLength }}">
     @for (row of board; track row; let row2 = $index) {
       @for (celda of row; track $index; let col2 = $index) {
-        @if (celda.getState() === true) {
-          <div class="celda encendida" (click)="pushLight(row2, col2)"></div>
+        @if (celda.getState()) {
+          <div class="cell on" (click)="pushLight(row2, col2)"></div>
         } @else {
-          <div class="celda apagada" (click)="pushLight(row2, col2)"></div>
+          <div class="cell off" (click)="pushLight(row2, col2)"></div>
         }
       }
     }
+  </div>
+  <div class="score">
+    <p>Score of {{ this.userName }}: <span>{{ this.score }}</span></p>
   </div>
 </div>

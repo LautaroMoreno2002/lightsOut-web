@@ -11,9 +11,11 @@ import { Celda } from './celda';
 export class BoardComponent {
   @Input() boardLength: number = 3;
   @Input() mod?: number;
-
+  @Input() userName: string = 'Pepito';
   @Output() finish = new EventEmitter<boolean>();
   board: Celda[][] = [];
+  
+  score: number = 0;
 
   ngOnInit(): void {
     this.startBoard();
@@ -40,6 +42,7 @@ export class BoardComponent {
       this.finish.emit(true);
     } else {
       this.board[_row][_col].offState();
+      this.score++;
       if (this.mod == 1) {
         this.columnsLightOnM1(_row, _col);
         this.rowsLightOnM1(_row, _col);
