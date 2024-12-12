@@ -15,6 +15,7 @@ export class BoardComponent implements OnInit, OnChanges {
   @Output() finish = new EventEmitter<boolean>();
   board: Celda[][] = [];
   score: number = 0;
+  record: number = 0;
 
   ngOnInit(): void {
     this.startBoard();

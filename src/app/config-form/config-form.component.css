@@ -1,16 +1,30 @@
 .form {
+  text-align: center;
   font-family: var(--font);
-  background-color: #ccc;
-  max-width: 450px;
-  height: 300px;
+  background-color: #eee;
   padding: 2em;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
+  margin: 2em;
+  border-radius: 15px;
+  box-shadow: 0px 0px 10px 10px #0f0c;
+}
+.form__fieldset {
+  border: 3px solid var(--light-out);
+  padding: 1em;
+  border-radius: 15px;
+  margin: 1em;
+}
+.fieldset__legend {
+  color: var(--light-out);
+  font-size: 24px;
+  font-weight: 800;
+  text-align: center;
 }
 .form__cont-input {
   line-height: 1.5;
-  margin: 10px;
+  margin: 40px 20px;
   display: flex;
   justify-content: space-between;
 }
@@ -18,11 +32,46 @@
   margin-right: 10px;
 }
 .form__cont-input > :is(input, select) {
-  width: 55%;
+  color: var(--light-active);
+  font-weight: 700;
+  font-size: 15px;
+  border: none;
+  background-color: transparent;
+  border-bottom: 2px solid var(--light-out);
+  min-width: 60%;
   text-align: center;
+}
+.form__cont-input> :is(input:focus) {
+  outline: none;
+  border-bottom: 3px solid var(--light-active);
+}
+.form__cont-input > input[type="submit"] {
+  border: 2px solid var(--light-out);
+  background-color: var(--light-out);
+  color: #fff;
+  font-weight: 900;
+  transition: .5s background-color linear;
+}
+.form__cont-input:hover > input[type="submit"] {
+  background-color: var(--light-active);
+  color: #fff;
 }
 input[type="radio"] {
   margin-right: 5px;
+  appearance: none;
+  
+  border-radius: 50%;
+  width: 16px;
+  height: 16px;
+
+  border: 2px solid green;
+  transition: 0.2s all linear;
+
+  position: relative;
+  top: 4px;
+}
+input[type="radio"]:checked {
+  border: 6px solid green;
 }
 input[type="submit"] {
   padding: 10px 0;

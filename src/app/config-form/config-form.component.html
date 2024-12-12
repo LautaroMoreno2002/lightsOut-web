@@ -1,31 +1,33 @@
 <form class="form" [formGroup]="formConfig" (ngSubmit)="startGame()">
-  <div class="form__cont-input">
-    <label for="name">User name:</label>
-    <input type="text" id="name" formControlName="userName" placeholder="Pepito123">
-  </div>
-  <div class="form__cont-input">
-    <label for="dificult">Dificult:</label>
-    <select id="dificult" formControlName="level">
-      <option value="3" [selected]="true">(3 x 3) Easy</option>
-      <option value="4">(4 x 4) Normal</option>
-      <option value="5">(5 x 5) Hard</option>
-      <option value="6">(6 x 6) Expert</option>
-    </select>
-  </div>
-  <div class="form__cont-input">
-    <label for="classic">Type of game:</label>
-    <div class="options">
-      <div class="option">
-        <input value="C" checked type="radio" id="classic" name="type" formControlName="type">
-        <label for="classic">Classic</label>
-      </div>
-      <div class="option">
-        <input value="V" type="radio" id="variant" name="type" formControlName="type">
-        <label for="variant">Variant</label>
+  <fieldset class="form__fieldset">
+    <legend class="fieldset__legend">Lights Out Web</legend>
+    <div class="form__cont-input">
+      <label for="name">User name:</label>
+      <input type="text" id="name" formControlName="userName" placeholder="Pepito123">
+    </div>
+    <div class="form__cont-input">
+      <label for="dificult">Dificult:</label>
+      <select id="dificult" formControlName="level">
+        <option value="3" [selected]="true">(3 x 3) Easy</option>
+        <option value="4">(4 x 4) Normal</option>
+        <option value="5">(5 x 5) Hard</option>
+      </select>
+    </div>
+    <div class="form__cont-input">
+      <label for="classic">Type of game:</label>
+      <div class="options">
+        <div class="option">
+          <input value="C" checked type="radio" id="classic" name="type" formControlName="type">
+          <label for="classic">Classic</label>
+        </div>
+        <div class="option">
+          <input value="V" type="radio" id="variant" name="type" formControlName="type">
+          <label for="variant">Variant</label>
+        </div>
       </div>
     </div>
-  </div>
-  <div class="form__cont-input">
-    <input type="submit" value="Start">
-  </div>
+    <div class="form__cont-input">
+      <input type="submit" value="Start">
+    </div>
+  </fieldset>
 </form>

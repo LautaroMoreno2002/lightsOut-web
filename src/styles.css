@@ -1,13 +1,17 @@
 /* You can add global styles to this file, and also import other style files */
 :root {
-  --light-active: #02e928;
-  --light-semi-active: #358003;
-  --light-out: #215002;
-  --light-semi-out: #49aa08;
+  --light-active: #2fc34f;
+  --light-semi-active: #2b9d27;
+  --light-out: #2c4828;
+  --light-semi-out: #2b8327;
   --font: sans-serif;
 }
 * {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
+  font-family: "JetBrains Mono Light";
+}
+body {
+  background: #282828;
 }
