@@ -1,6 +1,6 @@
 import { Component, inject, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
-import { ConfigFormComponent } from './config-form/config-form.component';
-import { BoardComponent } from './board/board.component';
+import { ConfigFormComponent } from './components/config-form/config-form.component';
+import { BoardComponent } from './components/board/board.component';
 import { RecordService } from './services/record-service.service';
 
 @Component({
