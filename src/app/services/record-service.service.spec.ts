@@ -1,8 +1,8 @@
 import { TestBed } from '@angular/core/testing';
 
-import { RecordService } from './record.service';
+import { RecordService } from './record-service.service';
 
-describe('RecordService', () => {
+describe('RecordServiceService', () => {
   let service: RecordService;
 
   beforeEach(() => {

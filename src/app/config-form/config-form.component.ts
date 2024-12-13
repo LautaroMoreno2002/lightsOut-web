@@ -16,6 +16,7 @@ export class ConfigFormComponent implements OnInit {
   @Output() nameConfig: EventEmitter<string>;
   @Output() levelConfig: EventEmitter<number>;
   @Output() typeConfig: EventEmitter<string>;
+  @Output() dataOut: EventEmitter<boolean>;
   private formBuilder: FormBuilder = inject(FormBuilder);
 
   constructor() {
@@ -25,6 +26,7 @@ export class ConfigFormComponent implements OnInit {
     this.nameConfig = new EventEmitter<string>();
     this.levelConfig = new EventEmitter<number>();
     this.typeConfig = new EventEmitter<string>();
+    this.dataOut = new EventEmitter<boolean>();
     this.formConfig = this.formBuilder.group({
       userName: ['', Validators.required],
       level: [, Validators.required],
@@ -51,6 +53,7 @@ export class ConfigFormComponent implements OnInit {
     this.nameConfig.emit(this.userName);
     this.levelConfig.emit(this.level);
     this.typeConfig.emit(this.type);
+    this.dataOut.emit(true);
   }
   
 }

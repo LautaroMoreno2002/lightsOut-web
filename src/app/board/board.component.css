@@ -27,12 +27,6 @@
     background-color: var(--light-semi-out);
   }
 }
-.record {
-  margin-left: 1em;
-  font-size: 1.2em;
-  color: var(--light-active);
-  margin-top: 1em;
-}
 .score {
   text-align: center;
   font-size: 1.2em;
@@ -40,10 +34,6 @@
   margin-top: .8em;
 }
 .score p span {
-  font-weight: 900;
-  color: rgb(211, 10, 10);
-}
-.record p span {
   font-weight: 900;
   color: rgb(211, 10, 10);
 }

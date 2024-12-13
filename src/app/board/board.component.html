@@ -1,7 +1,4 @@
 <div class="cont-board">
-  <div class="record">
-    <p>Record: <span>{{ this.record }}</span></p>
-  </div>
   <div class="board" style="--lenght: {{ boardLength }}">
     @for (row of board; track row; let row2 = $index) {
       @for (celda of row; track $index; let col2 = $index) {
