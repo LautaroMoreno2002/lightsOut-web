@@ -7,9 +7,15 @@ export class RecordService {
   localStorageKey: string = "";
   
   constructor() { }
-
+  noRegistrated(userName: string) {
+    for (let key = 0; key < localStorage.length; key++) {
+      if (localStorage.key(key) == userName) 
+        return false;
+    }
+    return true;
+  }
   setUserName(userName: string) {
-    if (this.localStorageKey != userName) {
+    if (this.localStorageKey != userName && this.noRegistrated(userName)) {
       this.localStorageKey = userName;    
       localStorage.setItem(
         this.localStorageKey,
@@ -28,7 +34,8 @@ export class RecordService {
           },
         })
       );
-    }
+    } else if (this.localStorageKey != userName)
+      this.localStorageKey = userName;
   }
   getRecord(_level: number, _type: string): number {  
     return (
